@@ -5,11 +5,11 @@ import (
 	"flag"
 	"fmt"
 	"os"
-
 	"github.com/minio/sio"
-
 	"golang.org/x/crypto/scrypt"
 )
+
+//TODO: - Add Viper
 
 func verifyArgs(encrypt, decrypt, keyGen, src, dst string) (ok bool) {
 	if encrypt != "" && decrypt != "" {
