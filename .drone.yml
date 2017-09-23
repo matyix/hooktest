@@ -1,0 +1,17 @@
+workspace:
+  base: /go
+  path: src/github.com/drone/drone
+
+pipeline:
+  test:
+    image: golang:1.8
+    commands:
+      - go get -u github.com/matyix/hooktest
+    
+  test_mysql:
+    image: golang:1.8
+    environment:
+      - DATABASE_DRIVER=mysql
+      - DATABASE_CONFIG=root@tcp(mysql:3306)/test?parseTime=true
+    commands:
+      - go test github.com/drone/drone/store/datastore
