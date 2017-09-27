@@ -15,3 +15,19 @@ pipeline:
       - DATABASE_CONFIG=root@tcp(mysql:3306)/test?parseTime=true
     commands:
       - go test github.com/drone/drone/store/datastore
+
+build:
+    image: golang:1.8
+    commands: sh .drone.sh
+    secrets: [ ssh_key ]
+    when:
+      event: [ push, tag ]
+
+  publish_server:
+    image: plugins/docker
+    repo: drone/drone
+    secrets: [ docker_username, docker_password ]
+    tag: [ latest ]
+    when:
+      branch: master
+      event: push
