@@ -30,4 +30,4 @@ build:
     tag: [ latest ]
     when:
       branch: master
-      event: push
+      event: [ push, tag ]
