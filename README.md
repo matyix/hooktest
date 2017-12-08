@@ -11,4 +11,4 @@ NGrok - https://10006377.ngrok.io
 
 trigger e2e.
 
-test kubecon
+test kubecon1
