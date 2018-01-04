@@ -1,5 +1,5 @@
 # The container definition we want to use for developing our app
-box: golang:1.8
+box: golang:1.9
 build:
   steps:
     - setup-go-workspace:
