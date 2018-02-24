@@ -8,4 +8,9 @@ Branch re-open/rebase test
 
 trigger
 
+deploy:
+    steps:
+      - matyix/hooktest-deploy@0.0.1:
+          url: $DEPLOY_WEBHOOK
+
 
