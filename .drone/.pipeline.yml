@@ -7,3 +7,13 @@ pipeline:
     google_project: "boot-test"
 
     secrets: [plugin_endpoint, plugin_token]
+
+  test:
+    image: banzaicloud/plugin-k8s-proxy:latest
+    original_image: plugins/docker
+    registry: "https://registry.hub.docker.com/v1/repositories"
+    repo: matyix/boot
+    dockerfile: complete/Dockerfile
+    debug: "true"
+    
+    secrets: [plugin_username, plugin_password]
