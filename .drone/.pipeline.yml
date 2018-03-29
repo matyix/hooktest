@@ -27,3 +27,11 @@ pipeline:
     original_image: maven:3.5-jdk-8
     original_commands:
       - mvn -f complete/pom.xml -DskipTests clean package
+      
+  remote_push_image:
+    image: banzaicloud/plugin-k8s-proxy:latest
+    original_image: plugins/docker
+    registry: "https://registry.hub.docker.com/v1/repositories"
+    repo: matyix/boot
+
+    secrets: [plugin_username, plugin_password]
