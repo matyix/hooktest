@@ -21,3 +21,9 @@ pipeline:
   remote_checkout:
     image: banzaicloud/plugin-k8s-proxy:latest
     original_image: plugins/git
+
+  remote_build:
+    image: banzaicloud/plugin-k8s-proxy:latest
+    original_image: maven:3.5-jdk-8
+    original_commands:
+      - mvn -f complete/pom.xml -DskipTests clean package
