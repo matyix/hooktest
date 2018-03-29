@@ -1,0 +1,9 @@
+pipeline:
+
+  create_cluster:
+    image: banzaicloud/plugin-pipeline-client:0.3.0
+    cluster_name: "boot"
+    cluster_provider: "google"
+    google_project: "boot-test"
+
+    secrets: [plugin_endpoint, plugin_token]
