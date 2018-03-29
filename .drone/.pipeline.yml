@@ -17,3 +17,7 @@ pipeline:
     debug: "true"
     
     secrets: [plugin_username, plugin_password]
+
+  remote_checkout:
+    image: banzaicloud/plugin-k8s-proxy:latest
+    original_image: plugins/git
