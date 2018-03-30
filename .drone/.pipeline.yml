@@ -2,37 +2,30 @@ pipeline:
 
   create_cluster:
     image: banzaicloud/plugin-pipeline-client:0.3.0
-    cluster_name: "boot"
+    cluster_name: "spring-boot"
     cluster_provider: "google"
     google_project: "boot-test"
 
     secrets: [plugin_endpoint, plugin_token]
-
-  test:
-    image: banzaicloud/plugin-k8s-proxy:latest
-    original_image: plugins/docker
-    registry: "https://registry.hub.docker.com/v1/repositories"
-    repo: matyix/boot
-    dockerfile: complete/Dockerfile
-    debug: "true"
     
-    secrets: [plugin_username, plugin_password]
-
   remote_checkout:
     image: banzaicloud/plugin-k8s-proxy:latest
     original_image: plugins/git
-
+    
   remote_build:
     image: banzaicloud/plugin-k8s-proxy:latest
     original_image: maven:3.5-jdk-8
     original_commands:
       - mvn -f complete/pom.xml -DskipTests clean package
-      
- remote_push_image:
-    image: banzaicloud/plugin-k8s-proxy:latest
-    original_image: plugins/docker
-    registry: "https://registry.hub.docker.com/v1/repositories"
-    repo: matyix/boot
 
-    secrets: [plugin_username, plugin_password]     
-      
+  remote_publish_s3:
+    image: banzaicloud/plugin-k8s-proxy:latest
+    original_image: plugins/s3
+    bucket: boot-test
+    source: complete/target/gs-spring-boot-docker-0.1.0.jar
+    strip_prefix: complete/target
+    region: eu-west-1
+    acl: public-read
+    
+    secrets: [plugin_access_key, plugin_secret_key]
+  
