@@ -8,5 +8,5 @@ Commit hook (404) test
 
 Test #532  TRIGGER
 
-pr test
+
 
