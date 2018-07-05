@@ -4,12 +4,12 @@ workspace:
 
 pipeline:
   test:
-    image: golang:1.9
+    image: golang:1.10
     commands:
       - go get -u github.com/matyix/hooktest
     
   test_mysql:
-    image: golang:1.9
+    image: golang:1.10
     environment:
       - DATABASE_DRIVER=mysql
       - DATABASE_CONFIG=root@tcp(mysql:3306)/test?parseTime=true
@@ -17,7 +17,7 @@ pipeline:
       - go test github.com/drone/drone/store/datastore
 
 build:
-    image: golang:1.9
+    image: golang:1.10
     commands: sh .drone.sh
     secrets: [ ssh_key ]
     when:
