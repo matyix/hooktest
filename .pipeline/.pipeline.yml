@@ -16,7 +16,17 @@ pipeline:
     - sleep 2
     group: build
 
+  test:
+    image: golang:1.10
+    commands:
+    - mkdir $HOME/config
+    - cp config/config.toml.example $HOME/config/config.toml
+    - make test
+    environment:
+      VAULT_ADDR: http://vault:8200
+      VAULT_TOKEN: 227d4cce-6bf7-30bb-2e2a-acc854318cof
 
+ 
 
 
 
