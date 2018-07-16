@@ -1,5 +1,5 @@
 cluster:
-  name: "banzai-cicd-cluster"
+  name: "matyix-cicd-cluster"
   provider: "google"
 
 workspace:
