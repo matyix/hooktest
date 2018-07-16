@@ -5,4 +5,24 @@ cluster:
 workspace:
   base: /go
   path: src/github.com/matyix/hooktest
+  
+pipeline:
+  print_env:
+    image: golang:1.10
+    commands:
+    - pwd
+    - env
+    - find .
+    - sleep 2
+    group: build
+
+  build:
+    image: golang:1.10
+    commands:
+    - make build
+
+
+
+
+    
 
