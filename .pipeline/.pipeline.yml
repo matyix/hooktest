@@ -16,11 +16,6 @@ pipeline:
     - sleep 2
     group: build
 
-  build:
-    image: golang:1.10
-    commands:
-    - make build
-
 
 
 
